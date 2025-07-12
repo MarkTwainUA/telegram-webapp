@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Get Business Connections</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    pre {
+      background: #fff;
+      padding: 10px;
+      border: 1px solid #ccc;
+      overflow-x: auto;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>🛠 Отримання Business Connection ID</h2>
+  <button onclick="getConnections()">Показати ID</button>
+  <p><b>Результат:</b></p>
+  <pre id="result">Натисни кнопку вище...</pre>
+
+  <script>
+    async function getConnections() {
+      try {
+        const result = await Telegram.WebApp.getBusinessConnections();
+        document.getElementById('result').textContent = JSON.stringify(result, null, 2);
+      } catch (error) {
+        document.getElementById('result').textContent = '❌ Помилка: ' + error.message;
+      }
+    }
+  </script>
+</body>
+</html>
